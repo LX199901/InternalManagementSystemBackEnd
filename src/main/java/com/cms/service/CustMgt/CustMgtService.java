@@ -6,5 +6,7 @@ public interface CustMgtService {
 
 	CustMgtBean getCustomerById(Integer customerId);
 
+	Integer createCustomer(CustMgtBean custMgtBean);
+
 
 }
