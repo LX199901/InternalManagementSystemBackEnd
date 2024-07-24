@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cms.mapper.CustMgt.CustMgtMapper">
+	
+	<select id="getCustomerById" 
+		    parameterType="com.cms.entity.CustMgt.CustMgtBean" 
+		    resultType="com.ims.react.entity.CmsEmployeeBean">
+			SELECT
+			customer_id, 
+			customer_name, 
+			customer_serial, 
+			customer_tel, 
+			customer_dep_name, 
+			customer_dep_tel, 
+			customer_dep_addr, 
+			register_employee_id, 
+			DATE_FORMAT(created_date, '%Y-%m-%d') as created_date,
+			DATE_FORMAT(last_modified_date, '%Y-%m-%d') as last_modified_date
+			FROM
+			customer
+		<where>
+			name = #{customer_id})
+		</where>
+	</select>
+
+</mapper>
