@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.cms.entity.CustMgt.CustMgtBean;
 
@@ -30,6 +31,18 @@ public interface CustMgtMapper {
 			+ "	#{customer_dep_name},	#{customer_dep_tel}, 	#{customer_dep_addr}, 	#{register_employee_id} )")
 	 @Options(useGeneratedKeys = true, keyProperty = "customer_id")
 	public Integer createCustomer(CustMgtBean custMgtBean);
+
+
+	@Update("UPDATE customer " +
+        "SET  customer_name 		= #{custMgtBean.customer_name},"
+	        + "	customer_serial 	= #{custMgtBean.customer_serial}, "
+	        + "	customer_tel 		= #{custMgtBean.customer_tel}, "
+	        + "	customer_dep_name 	= #{custMgtBean.customer_dep_name}, "
+	        + "	customer_dep_tel 	= #{custMgtBean.customer_dep_tel}, "
+	        + "	customer_dep_addr 	= #{custMgtBean.customer_dep_addr}, "
+	        + "	last_modified_date 	= CURRENT_TIMESTAMP " 
+        + " WHERE customer_id = #{customerId} AND register_employee_id = #{custMgtBean.register_employee_id}")
+	public void updateCustomer(Integer customerId, CustMgtBean custMgtBean);
 	
 	
 

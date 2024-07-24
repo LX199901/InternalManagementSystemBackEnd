@@ -18,16 +18,19 @@ public class CustMgtServiceImpl implements CustMgtService{
 
 	@Override
 	public CustMgtBean getCustomerById(Integer customerId) {
-		log.debug("CustMgtServiceImpl.getCustomerById");
-
 		return custMgtMapper.getCustomerById(customerId);
 
 	}
 
 	@Override
 	public Integer createCustomer(CustMgtBean custMgtBean) {
-		log.debug("CustMgtServiceImpl.createCustomer");
 		return custMgtMapper.createCustomer(custMgtBean);
+	}
+
+	@Override
+	public void updateCustomer(Integer customerId, CustMgtBean custMgtBean) {
+		log.debug("CustMgtServiceImpl.updateCustomer: customerId = {}", customerId);
+		custMgtMapper.updateCustomer(customerId, custMgtBean);
 	}
 	
 	

@@ -8,5 +8,8 @@ public interface CustMgtService {
 
 	Integer createCustomer(CustMgtBean custMgtBean);
 
+	void updateCustomer(Integer customerId, CustMgtBean custMgtBean);
+
+
 
 }
