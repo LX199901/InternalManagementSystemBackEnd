@@ -11,6 +11,7 @@ import com.cms.entity.CustMgt.CustMgtBean;
 @Mapper
 public interface CustMgtMapper {
 
+	//詳細情報用
 	@Select(
 	    "SELECT customer_id,		 customer_name, 	customer_serial, 	customer_tel, "
     		+  "customer_dep_name,	 customer_dep_tel, 	customer_dep_addr, 	register_employee_id, "
@@ -19,8 +20,22 @@ public interface CustMgtMapper {
 	    + " WHERE customer_id = #{customerId} ")
 	public CustMgtBean getCustomerById(Integer customerId);
 
+	//顧客検索用
+	@Select({
+	    "<script>",
+	    "SELECT customer_id,		 customer_name, 	customer_serial, 	customer_dep_name ",
+	    "FROM ",
+	    "    customer ",
+	    "WHERE ",
+	    "    register_employee_id = #{employeeId} ",
+	    "ORDER BY ",
+	    "    customer_id ",
+	    "LIMIT 1 ",
+	    "</script>"
+	})
+	public CustMgtBean getCustomersByEmployeeId(Integer employeeId);
 	
-	
+	//新規顧客
 	@Insert(
 		"INSERT INTO customer ("
 			+ " customer_name, 		 customer_serial, 	customer_tel, "
@@ -32,7 +47,8 @@ public interface CustMgtMapper {
 	 @Options(useGeneratedKeys = true, keyProperty = "customer_id")
 	public Integer createCustomer(CustMgtBean custMgtBean);
 
-
+	
+	//顧客更新
 	@Update("UPDATE customer " +
         "SET  customer_name 		= #{custMgtBean.customer_name},"
 	        + "	customer_serial 	= #{custMgtBean.customer_serial}, "
@@ -43,6 +59,7 @@ public interface CustMgtMapper {
 	        + "	last_modified_date 	= CURRENT_TIMESTAMP " 
         + " WHERE customer_id = #{customerId} AND register_employee_id = #{custMgtBean.register_employee_id}")
 	public void updateCustomer(Integer customerId, CustMgtBean custMgtBean);
+
 	
 	
 

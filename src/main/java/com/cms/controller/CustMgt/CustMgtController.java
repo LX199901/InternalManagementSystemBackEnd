@@ -25,6 +25,7 @@ public class CustMgtController {
 	
 	private final static Logger log = LoggerFactory.getLogger(CustMgtController.class);
 	
+	//詳細情報用
 	@GetMapping("/customers/{customerId}")
 	public ResponseEntity<CustMgtBean> getCustomerById(@PathVariable Integer customerId){
 		log.debug("CustMgtController.getCustomerById({})", customerId);
@@ -38,6 +39,21 @@ public class CustMgtController {
 		}
 		
 	}
+	
+	//顧客検索用
+	@GetMapping("/searchCustomers/{employeeId}")
+	public ResponseEntity<CustMgtBean> getCustomersByEmployeeId(@PathVariable Integer employeeId){
+		//TODO testing; return the first one to confirm function.
+		log.debug("CustMgtController.getCustomersByEmployeeId({})", employeeId);
+		CustMgtBean custMgtBean = custMgtService.getCustomersByEmployeeId(employeeId);
+				
+		if (custMgtBean != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(custMgtBean);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+	
 	
 	@PostMapping("/customers")
 	public ResponseEntity<CustMgtBean> createCustomer(@RequestBody CustMgtBean custMgtBean){

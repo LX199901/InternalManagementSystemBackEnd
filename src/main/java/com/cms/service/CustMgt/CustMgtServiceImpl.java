@@ -23,6 +23,11 @@ public class CustMgtServiceImpl implements CustMgtService{
 	}
 
 	@Override
+	public CustMgtBean getCustomersByEmployeeId(Integer employeeId) {
+		return custMgtMapper.getCustomersByEmployeeId(employeeId);
+	}
+	
+	@Override
 	public Integer createCustomer(CustMgtBean custMgtBean) {
 		return custMgtMapper.createCustomer(custMgtBean);
 	}
