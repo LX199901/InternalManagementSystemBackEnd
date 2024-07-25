@@ -31,12 +31,23 @@ public interface CustMgtMapper {
 	    "    customer ",
 	    "WHERE ",
 	    "    register_employee_id = #{employeeId} ",
+        "    <if test='customerId != null'>",
+        "        AND customer_id = #{customerId} ",
+        "    </if>",
+        "    <if test='customerSerial != null'>",
+        "        AND customer_serial = #{customerSerial} ",
+        "    </if>",
+        "    <if test='customerName != null'>",
+        "        AND customer_name LIKE CONCAT('%', #{customerName}, '%') ",
+        "    </if>",
+        "    <if test='customerDepName != null'>",
+        "        AND customer_dep_name LIKE CONCAT('%', #{customerDepName}, '%') ",
+        "    </if>",
 	    "ORDER BY ",
 	    "    customer_id ",
-//	    "LIMIT 1 ",
 	    "</script>"
 	})
-	public List<CustMgtQueryBean> getCustomersByEmployeeId(Integer employeeId);
+	public List<CustMgtQueryBean> getCustomersByEmployeeId(Integer employeeId, Integer customerId, String customerSerial, String customerName, String customerDepName);
 	
 	//新規顧客
 	@Insert(

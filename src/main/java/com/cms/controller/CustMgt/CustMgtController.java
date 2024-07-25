@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cms.entity.CustMgt.CustMgtBean;
@@ -46,11 +47,14 @@ public class CustMgtController {
 	
 	//顧客検索用
 	@GetMapping("/searchCustomers/{employeeId}")
-	public ResponseEntity<List<CustMgtQueryBean>> getCustomersByEmployeeId(@PathVariable Integer employeeId){
+	public ResponseEntity<List<CustMgtQueryBean>> getCustomersByEmployeeId(@PathVariable Integer employeeId, 
+				//Search condition
+				@RequestParam(required = false) Integer customerId, 		@RequestParam(required = false) String customerSerial,
+				@RequestParam(required = false) String customerName ,	@RequestParam(required = false) String customerDepName){
 	    List<CustMgtQueryBean> custMgtQueryBeanList = new ArrayList<>();
 
 	    try {
-	        custMgtQueryBeanList = custMgtService.getCustomersByEmployeeId(employeeId);
+	        custMgtQueryBeanList = custMgtService.getCustomersByEmployeeId(employeeId, customerId, customerSerial, customerName, customerDepName);
 	        
 	        if (custMgtQueryBeanList != null && !custMgtQueryBeanList.isEmpty() && custMgtQueryBeanList.get(0) != null) {
 	            return ResponseEntity.status(HttpStatus.OK).body(custMgtQueryBeanList);

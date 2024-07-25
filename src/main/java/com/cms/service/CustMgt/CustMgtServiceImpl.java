@@ -27,12 +27,12 @@ public class CustMgtServiceImpl implements CustMgtService{
 	}
 
 	@Override
-	public List<CustMgtQueryBean> getCustomersByEmployeeId(Integer employeeId) {
+	public List<CustMgtQueryBean> getCustomersByEmployeeId(Integer employeeId, Integer customerId, String customerSerial, String customerName, String customerDepName) {
 		log.debug("CustMgtServiceImpl.getCustomersByEmployeeId({}) start searching.", employeeId);
 		List<CustMgtQueryBean> custMgtQueryBeanList=  new ArrayList<>();
 		
 		try {
-	        custMgtQueryBeanList = custMgtMapper.getCustomersByEmployeeId(employeeId);
+	        custMgtQueryBeanList = custMgtMapper.getCustomersByEmployeeId(employeeId, customerId, customerSerial, customerName, customerDepName);
 	        
 	        if (custMgtQueryBeanList != null && !custMgtQueryBeanList.isEmpty() && custMgtQueryBeanList.get(0) != null) {
 	            log.debug("CustMgtServiceImpl.getCustomersByEmployeeId({}) got customers.", employeeId);
