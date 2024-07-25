@@ -28,19 +28,28 @@ public class CustMgtServiceImpl implements CustMgtService{
 
 	@Override
 	public List<CustMgtQueryBean> getCustomersByEmployeeId(Integer employeeId) {
-		List<CustMgtBean> custMgtBeanList = custMgtMapper.getCustomersByEmployeeId(employeeId);
-		List<CustMgtQueryBean> custMgtQueryBeanList = new ArrayList<>();
-		        
-        for (CustMgtBean custMgtBean : custMgtBeanList) {
-            CustMgtQueryBean custMgtQueryBean = new CustMgtQueryBean();
-            custMgtQueryBean.setCustomer_id(custMgtBean.getCustomer_id());
-            custMgtQueryBean.setCustomer_name(custMgtBean.getCustomer_name());
-            custMgtQueryBean.setCustomer_serial(custMgtBean.getCustomer_serial());
-            custMgtQueryBean.setCustomer_dep_name(custMgtBean.getCustomer_dep_name());
-            custMgtQueryBeanList.add(custMgtQueryBean);
+		log.debug("CustMgtServiceImpl.getCustomersByEmployeeId({}) start searching.", employeeId);
+		List<CustMgtQueryBean> custMgtQueryBeanList=  new ArrayList<>();
+		
+		try {
+	        custMgtQueryBeanList = custMgtMapper.getCustomersByEmployeeId(employeeId);
+	        
+	        if (custMgtQueryBeanList != null && !custMgtQueryBeanList.isEmpty() && custMgtQueryBeanList.get(0) != null) {
+	            log.debug("CustMgtServiceImpl.getCustomersByEmployeeId({}) got customers.", employeeId);
+	            return custMgtQueryBeanList;
+	        } else {
+	            log.debug("CustMgtServiceImpl.getCustomersByEmployeeId({}) got nothing.", employeeId);
+	            return new ArrayList<>(); 
+	        }
+	        
+	    } catch (IndexOutOfBoundsException e) {
+	        log.error("CustMgtServiceImpl.getCustomersByEmployeeId({}) encountered an IndexOutOfBoundsException: {}", employeeId, e.getMessage());
+	        return new ArrayList<>();
+	        
+	    } catch (Exception e) {
+	        log.error("CustMgtServiceImpl.getCustomersByEmployeeId({}) encountered an exception: {}", employeeId, e.getMessage());
+	        return new ArrayList<>(); 
         }
-        
-        return custMgtQueryBeanList;
 	}
 	
 	@Override

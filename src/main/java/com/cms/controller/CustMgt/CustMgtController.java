@@ -1,5 +1,6 @@
 package com.cms.controller.CustMgt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -46,15 +47,21 @@ public class CustMgtController {
 	//顧客検索用
 	@GetMapping("/searchCustomers/{employeeId}")
 	public ResponseEntity<List<CustMgtQueryBean>> getCustomersByEmployeeId(@PathVariable Integer employeeId){
-		//TODO testing; return the first one to confirm function.
-		log.debug("CustMgtController.getCustomersByEmployeeId({})", employeeId);
-		List<CustMgtQueryBean> custMgtBeanList = custMgtService.getCustomersByEmployeeId(employeeId);
-				
-		if (custMgtBeanList.get(0) != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(custMgtBeanList);
-		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
+	    List<CustMgtQueryBean> custMgtQueryBeanList = new ArrayList<>();
+
+	    try {
+	        custMgtQueryBeanList = custMgtService.getCustomersByEmployeeId(employeeId);
+	        
+	        if (custMgtQueryBeanList != null && !custMgtQueryBeanList.isEmpty() && custMgtQueryBeanList.get(0) != null) {
+	            return ResponseEntity.status(HttpStatus.OK).body(custMgtQueryBeanList);
+	        } else {
+	            log.debug("CustMgtController.getCustomersByEmployeeId({}) got nothing.", employeeId);
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	        }
+	    } catch (Exception e) {
+	        log.error("CustMgtController.getCustomersByEmployeeId({}) encountered an exception: {}", employeeId, e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
 	}
 	
 	

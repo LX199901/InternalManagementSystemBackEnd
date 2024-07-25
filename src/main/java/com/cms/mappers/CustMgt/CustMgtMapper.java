@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.cms.entity.CustMgt.CustMgtBean;
+import com.cms.entity.CustMgt.CustMgtQueryBean;
 
 @Mapper
 public interface CustMgtMapper {
@@ -35,7 +36,7 @@ public interface CustMgtMapper {
 //	    "LIMIT 1 ",
 	    "</script>"
 	})
-	public List<CustMgtBean> getCustomersByEmployeeId(Integer employeeId);
+	public List<CustMgtQueryBean> getCustomersByEmployeeId(Integer employeeId);
 	
 	//新規顧客
 	@Insert(
