@@ -1,5 +1,7 @@
 package com.cms.mappers.CustMgt;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -30,10 +32,10 @@ public interface CustMgtMapper {
 	    "    register_employee_id = #{employeeId} ",
 	    "ORDER BY ",
 	    "    customer_id ",
-	    "LIMIT 1 ",
+//	    "LIMIT 1 ",
 	    "</script>"
 	})
-	public CustMgtBean getCustomersByEmployeeId(Integer employeeId);
+	public List<CustMgtBean> getCustomersByEmployeeId(Integer employeeId);
 	
 	//新規顧客
 	@Insert(

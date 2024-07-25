@@ -1,5 +1,7 @@
 package com.cms.controller.CustMgt;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +44,13 @@ public class CustMgtController {
 	
 	//顧客検索用
 	@GetMapping("/searchCustomers/{employeeId}")
-	public ResponseEntity<CustMgtBean> getCustomersByEmployeeId(@PathVariable Integer employeeId){
+	public ResponseEntity<List<CustMgtBean>> getCustomersByEmployeeId(@PathVariable Integer employeeId){
 		//TODO testing; return the first one to confirm function.
 		log.debug("CustMgtController.getCustomersByEmployeeId({})", employeeId);
-		CustMgtBean custMgtBean = custMgtService.getCustomersByEmployeeId(employeeId);
+		List<CustMgtBean> custMgtBeanList = custMgtService.getCustomersByEmployeeId(employeeId);
 				
-		if (custMgtBean != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(custMgtBean);
+		if (custMgtBeanList.get(0) != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(custMgtBeanList);
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}

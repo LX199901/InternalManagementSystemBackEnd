@@ -1,5 +1,7 @@
 package com.cms.service.CustMgt;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class CustMgtServiceImpl implements CustMgtService{
 	}
 
 	@Override
-	public CustMgtBean getCustomersByEmployeeId(Integer employeeId) {
+	public List<CustMgtBean> getCustomersByEmployeeId(Integer employeeId) {
 		return custMgtMapper.getCustomersByEmployeeId(employeeId);
 	}
 	
