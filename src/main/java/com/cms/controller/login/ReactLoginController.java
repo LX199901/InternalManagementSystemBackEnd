@@ -1,4 +1,4 @@
-package com.cms.react.controller.login;
+package com.cms.controller.login;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
