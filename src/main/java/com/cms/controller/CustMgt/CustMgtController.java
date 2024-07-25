@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cms.entity.CustMgt.CustMgtBean;
+import com.cms.entity.CustMgt.CustMgtQueryBean;
 import com.cms.service.CustMgt.CustMgtService;
 
 @RestController
@@ -44,10 +45,10 @@ public class CustMgtController {
 	
 	//顧客検索用
 	@GetMapping("/searchCustomers/{employeeId}")
-	public ResponseEntity<List<CustMgtBean>> getCustomersByEmployeeId(@PathVariable Integer employeeId){
+	public ResponseEntity<List<CustMgtQueryBean>> getCustomersByEmployeeId(@PathVariable Integer employeeId){
 		//TODO testing; return the first one to confirm function.
 		log.debug("CustMgtController.getCustomersByEmployeeId({})", employeeId);
-		List<CustMgtBean> custMgtBeanList = custMgtService.getCustomersByEmployeeId(employeeId);
+		List<CustMgtQueryBean> custMgtBeanList = custMgtService.getCustomersByEmployeeId(employeeId);
 				
 		if (custMgtBeanList.get(0) != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(custMgtBeanList);
