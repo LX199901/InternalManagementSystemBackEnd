@@ -14,7 +14,7 @@ public class ReactLoginController {
     @PostMapping("/login")
     public ImsResponse login(@RequestBody User user) {
         // 这里简单的验证逻辑，可以根据需要进行修改
-        if ("admin".equals(user.getUsername()) && "password".equals(user.getPassword())) {
+        if ("admin".equals(user.getUsername()) && "password".equals(user.getPassword()) || "user".equals(user.getUsername()) && "password".equals(user.getPassword())) {
             return new ImsResponse(true);
         }
         return new ImsResponse(false,"ユーザとパスワードは正確ではなく");
