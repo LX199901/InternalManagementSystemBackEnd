@@ -71,11 +71,11 @@ public class CustMgtController {
 	//新規顧客	//TODO: must, range, format
 	@PostMapping("/customers")
 	public ResponseEntity<CustMgtBean> createCustomer(@RequestBody CustMgtBean custMgtBean){
-		Integer customerId = custMgtService.createCustomer(custMgtBean);
+		custMgtService.createCustomer(custMgtBean);		
+		Integer customerId = custMgtBean.getCustomer_id();
 		log.debug("CustMgtController.createCustomer( return customer_id ={})", customerId);
 		
 		CustMgtBean createCustMgtBean = custMgtService.getCustomerById(customerId);
-		//TODO: debug - always return customer_id=1
 		return ResponseEntity.status(HttpStatus.CREATED).body(createCustMgtBean);
 	}
 	

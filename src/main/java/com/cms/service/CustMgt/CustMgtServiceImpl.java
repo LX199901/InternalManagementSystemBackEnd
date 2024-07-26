@@ -23,7 +23,6 @@ public class CustMgtServiceImpl implements CustMgtService{
 	@Override
 	public CustMgtBean getCustomerById(Integer customerId) {
 		return custMgtMapper.getCustomerById(customerId);
-
 	}
 
 	@Override
