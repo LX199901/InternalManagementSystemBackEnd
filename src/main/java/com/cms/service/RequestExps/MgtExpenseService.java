@@ -1,11 +1,16 @@
 package com.cms.service.RequestExps;
 
 import java.util.List;
+import java.util.Map;
 
-import com.cms.entity.RequestExps.MgtExpenseBean;
 import com.cms.form.RequestExps.MgtExpenseForm;
 
 public interface MgtExpenseService {
 
-	public List<MgtExpenseBean> SelectExpense (MgtExpenseForm form);
+	public List<MgtExpenseForm> SelectExpense (String test);
+	
+	public Map<String, String> getDepartment();
+	
+	public Map<String, String> getPosition();
+	
 }
