@@ -9,8 +9,10 @@ public interface MgtExpenseService {
 
 	public List<MgtExpenseForm> SelectExpense (String test);
 	
-	public Map<String, String> getDepartment();
+	public Map<String, String> getDepartments();
 	
-	public Map<String, String> getPosition();
+	public Map<String, String> getPositions();
+	
+	public Map<String, String> getProcessingStatus();
 	
 }

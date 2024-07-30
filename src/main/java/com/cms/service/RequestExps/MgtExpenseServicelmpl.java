@@ -32,7 +32,7 @@ public class MgtExpenseServicelmpl implements MgtExpenseService {
 
 	@Override
 
-	public Map<String, String> getDepartment() {
+	public Map<String, String> getDepartments() {
 
 		Map<String, String> DepartmentMap = new HashMap<>();
 
@@ -44,7 +44,7 @@ public class MgtExpenseServicelmpl implements MgtExpenseService {
 	}
 
 	@Override
-	public Map<String, String> getPosition() {
+	public Map<String, String> getPositions() {
 
 		Map<String, String> PositionMap = new HashMap<>();
 
@@ -55,6 +55,20 @@ public class MgtExpenseServicelmpl implements MgtExpenseService {
 		return PositionMap;
 	}
 
+	@Override
+	public Map<String, String> getProcessingStatus() {
+		
+		Map<String, String> ProcessingStatusMap = new HashMap<>();
+
+		ProcessingStatusMap.put("S1", "承認待ち");
+		ProcessingStatusMap.put("S2", "承認済み");
+		ProcessingStatusMap.put("S3", "承認不可");
+		ProcessingStatusMap.put("S4", "清算中");
+		ProcessingStatusMap.put("S5", "清算済み");
+		
+		return ProcessingStatusMap;
+	}
+	
 	public List<MgtExpenseForm> setMock() {
 
 		List<MgtExpenseForm> list = new ArrayList<>();
@@ -123,5 +137,7 @@ public class MgtExpenseServicelmpl implements MgtExpenseService {
 
 		return list;
 	}
+
+
 
 }
