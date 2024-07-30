@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +31,6 @@ public class CustBankMgtController {
 	@Autowired
 	private CustMgtService custMgtService;
 	
-	@Autowired
-	
 	private final static Logger log = LoggerFactory.getLogger(CustBankMgtController.class);
 	
 	//詳細情報用
@@ -43,10 +44,8 @@ public class CustBankMgtController {
 			return ResponseEntity.status(HttpStatus.OK).body(custBankMgtBean);
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-		
+		}		
 	}
-	
 	
 	
 	//顧客検索用
@@ -71,4 +70,15 @@ public class CustBankMgtController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    }
 	}
+	
+//	@PostMapping("/accounts/{bankAccountId}")
+//	public ResponseEntity<CustBankMgtBean> createAccount(@RequestBody CustBankMgtBean custBankMgtBean){
+//		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//	}
+//	
+//	@PutMapping("/accounts/{bankAccountId}")
+//	public ResponseEntity<CustBankMgtBean> updateAccount(@PathVariable Integer bankAccountId, @RequestBody CustBankMgtBean custBankMgtBean){
+//		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//	}
+	
 }

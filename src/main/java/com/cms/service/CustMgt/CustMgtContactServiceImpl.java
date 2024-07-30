@@ -22,4 +22,10 @@ public class CustMgtContactServiceImpl implements CustMgtContactService{
 		return custMgtContactMapper.getContactById(contactId);
 	}
 
+	@Override
+	public Integer createContact(CustMgtContactBean custMgtContactBean) {
+		log.debug("CustMgtContactServiceImpl.createContact");
+		return custMgtContactMapper.createContact(custMgtContactBean);
+	}
+
 }

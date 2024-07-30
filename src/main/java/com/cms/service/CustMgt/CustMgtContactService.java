@@ -6,4 +6,6 @@ public interface CustMgtContactService {
 
 	CustMgtContactBean getContactById(Integer contactId);
 
+	Integer createContact(CustMgtContactBean custMgtContactBean);
+
 }
