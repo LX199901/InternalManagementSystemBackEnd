@@ -13,27 +13,58 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cms.common.data.ImsResponse;
 import com.cms.controller.CustMgt.CustMgtController;
-import com.cms.entity.CmsEmployeeBean;
+import com.cms.entity.SalaryMgt.SalaryMgtBean;
 import com.cms.form.CustMgt.SalaryMgt.SalaryMgtForm;
-import com.cms.service.EmployeeListService;
+import com.cms.service.SalaryMgt.SalaryMgtService;
 
 @RestController
 @RequestMapping("/react/salary")
 public class SalaryMgtController {
 	@Autowired
-	private EmployeeListService service;
+	private SalaryMgtService service;
 	private final static Logger log = LoggerFactory.getLogger(CustMgtController.class);
 	
-	@PostMapping("/select")
-    public ImsResponse<CmsEmployeeBean> selectSalary(@RequestBody SalaryMgtForm form) {
+	@PostMapping("/getSalaryRecord")
+    public ImsResponse<SalaryMgtBean> getSalaryRecord(@RequestBody SalaryMgtForm form) {
 		log.warn("form",form);
-		List<CmsEmployeeBean> ret = new ArrayList<CmsEmployeeBean>();
+		List<SalaryMgtBean> ret = new ArrayList<SalaryMgtBean>();
 		try {
-			ret = service.findAll(form.getParam_name(), form.getSalary_date());
+			ret = service.getSalaryRecord(form);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
         return new ImsResponse<>(ret);
     }
+	
+	@PostMapping("/getSalaryTotal")
+    public ImsResponse<Integer> getSalaryTotal(@RequestBody SalaryMgtForm form) {
+		log.warn("form",form);
+		Integer ret = 0;
+		try {
+			ret = service.getSalaryTotal(form);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+        return new ImsResponse<>(ret);
+    }
+	
+	@PostMapping("/calculateSalary")
+    public ImsResponse<Integer> calculateSalary(@RequestBody SalaryMgtForm form) {
+		log.warn("form",form);
+		Integer ret = 0;
+		try {
+			ret = 1;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+        return new ImsResponse<>(ret);
+    }
+	
+	
+	
+	
+	
 }

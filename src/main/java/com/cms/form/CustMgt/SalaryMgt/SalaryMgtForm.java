@@ -16,7 +16,9 @@ public class SalaryMgtForm {
 	//社员ID
 	int param_id;
 	//每页条数
-	int pege_size;
+	int page_size;
+	//页数
+	int page;
 	//tabkey
 	String tab_key;
 }
