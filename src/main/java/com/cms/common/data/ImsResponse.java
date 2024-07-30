@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ImsResponse<T> {
     private String message;
     private boolean status;
-    private T data;
-    
     private List<T> results;
 
     public ImsResponse(boolean status, String message) {
@@ -23,10 +21,6 @@ public class ImsResponse<T> {
     	this.status = true;
     	this.message = "";
         this.results = results;
-    }
-    
-    public ImsResponse(T data) {
-        this.data = data;
     }
     
     @JsonProperty
@@ -50,10 +44,5 @@ public class ImsResponse<T> {
     @JsonProperty
     public List<T> getResults() {
         return this.results;
-    }
-    
-    @JsonProperty
-    public T getData() {
-        return this.data;
     }
 }
