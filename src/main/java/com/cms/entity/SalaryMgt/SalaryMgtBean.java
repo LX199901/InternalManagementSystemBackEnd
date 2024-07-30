@@ -1,7 +1,5 @@
 package com.cms.entity.SalaryMgt;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -25,6 +23,6 @@ public class SalaryMgtBean {
 	private double deduction;
 	private double other_pay;
 	private double total_salary;
-	private Date payment_date;
-	private Date payment_issue_date;
+	private String payment_date;
+	private String payment_issue_date;
 }
