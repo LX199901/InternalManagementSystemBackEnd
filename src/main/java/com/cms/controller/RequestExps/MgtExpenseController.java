@@ -1,6 +1,5 @@
 package com.cms.controller.RequestExps;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,47 +21,27 @@ public class MgtExpenseController {
 	MgtExpenseService service;
 	
 	@GetMapping("/init")
-	public List<Map<String, String>> init (MgtExpenseForm form) {
-		
-		List<Map<String, String>> results = new ArrayList<>();
-		
-//		//部門抽出
-//		getDepartments();
-//		//職務抽出
-//		getPositions();
-//		//処理状態抽出
-//		getProcessingStatus();
+	public void init (MgtExpenseForm form) {
 		
 		//部門抽出
-		results.add(getDepartments());
+		getDepartment();
 		//職務抽出
-		results.add(getPositions());
-		//処理状態抽出
-		results.add(getProcessingStatus());
-		
-		return results;
+		getPosition();
 		
 	}
 
 	//部門抽出
-//	@GetMapping("/getDepartments")
-	public Map<String, String> getDepartments() {
+	@GetMapping("/getDepartment")
+	public Map<String, String> getDepartment() {
 		
-		return service.getDepartments();
+		return service.getDepartment();
 	}
 
 	//職務抽出
-//	@GetMapping("/getPositions")
-	public Map<String, String> getPositions() {
+	@GetMapping("/getPosition")
+	public Map<String, String> getPosition() {
 		
-		return service.getPositions();
-	}
-	
-	//処理状態抽出
-//	@GetMapping("/getProcessingStatus")
-	public Map<String, String> getProcessingStatus() {
-		
-		return service.getProcessingStatus();
+		return service.getPosition();
 	}
 	
 	

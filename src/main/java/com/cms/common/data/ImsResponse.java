@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ImsResponse<T> {
     private String message;
     private boolean status;
+    
     private List<T> results;
 
     public ImsResponse(boolean status, String message) {
