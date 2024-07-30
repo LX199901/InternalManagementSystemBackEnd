@@ -52,15 +52,9 @@ public class SalaryMgtController {
 	
 	@PostMapping("/calculateSalary")
     public ImsResponse<Integer> calculateSalary(@RequestBody SalaryMgtForm form) {
-		log.warn("form",form);
-		Integer ret = 0;
-		try {
-			ret = 1;
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+
 		
-        return new ImsResponse<>(ret);
+        return new ImsResponse<>(0);
     }
 	
 	
