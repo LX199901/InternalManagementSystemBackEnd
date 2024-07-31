@@ -33,4 +33,9 @@ public class CustMgtContactServiceImpl implements CustMgtContactService{
 		custMgtContactMapper.updateContact(contactId, custMgtContactBean);
 	}
 
+	@Override
+	public void deleteContact(Integer contactId) {
+		custMgtContactMapper.deleteContact(contactId);
+	}
+
 }

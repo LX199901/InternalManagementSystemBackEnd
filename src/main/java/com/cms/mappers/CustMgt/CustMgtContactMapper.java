@@ -1,5 +1,6 @@
 package com.cms.mappers.CustMgt;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -34,6 +35,8 @@ public interface CustMgtContactMapper {
 		        + " WHERE contact_id = #{contactId} AND customer_id = #{custMgtContactBean.customer_id}")
 		public void updateContact(Integer contactId, CustMgtContactBean custMgtContactBean);
 		
-
-
+		@Delete("DELETE FROM customer_contact "
+				+ " WHERE contact_id = #{contactId}")
+		public void deleteContact(Integer contactId);
+		
 }

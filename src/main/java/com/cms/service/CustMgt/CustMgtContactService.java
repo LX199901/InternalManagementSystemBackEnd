@@ -10,4 +10,6 @@ public interface CustMgtContactService {
 
 	void updateContact(Integer contactId, CustMgtContactBean custMgtContactBean);
 
+	void deleteContact(Integer contactId);
+
 }
