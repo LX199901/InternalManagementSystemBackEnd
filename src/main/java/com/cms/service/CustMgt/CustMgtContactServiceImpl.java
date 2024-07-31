@@ -28,4 +28,9 @@ public class CustMgtContactServiceImpl implements CustMgtContactService{
 		return custMgtContactMapper.createContact(custMgtContactBean);
 	}
 
+	@Override
+	public void updateContact(Integer contactId, CustMgtContactBean custMgtContactBean) {
+		custMgtContactMapper.updateContact(contactId, custMgtContactBean);
+	}
+
 }

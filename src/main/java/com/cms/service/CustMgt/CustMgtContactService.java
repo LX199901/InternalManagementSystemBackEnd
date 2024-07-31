@@ -8,4 +8,6 @@ public interface CustMgtContactService {
 
 	Integer createContact(CustMgtContactBean custMgtContactBean);
 
+	void updateContact(Integer contactId, CustMgtContactBean custMgtContactBean);
+
 }
