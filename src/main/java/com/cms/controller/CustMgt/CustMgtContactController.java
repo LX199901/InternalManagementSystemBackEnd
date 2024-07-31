@@ -1,5 +1,8 @@
 package com.cms.controller.CustMgt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,23 @@ public class CustMgtContactController {
 			return ResponseEntity.status(HttpStatus.OK).body(custMgtContactBean);
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+	
+	@GetMapping("/{customerId}/contacts")
+	public ResponseEntity<List<CustMgtContactBean>> getContactsByCustomerId(@PathVariable Integer customerId ){
+		log.debug("CustMgtContactController.getContactsByCustomerId({})", customerId );
+		List<CustMgtContactBean> custMgtContactBeanList = new ArrayList<>();
+		try {
+			custMgtContactBeanList = custMgtContactService.getContactsByCustomerId(customerId);
+			if (custMgtContactBeanList.get(0)  != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(custMgtContactBeanList);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}			
+		} catch (Exception e) {
+	        log.error("CustMgtContactController.getContactsByCustomerId({}) encountered an exception: {}", customerId, e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 	

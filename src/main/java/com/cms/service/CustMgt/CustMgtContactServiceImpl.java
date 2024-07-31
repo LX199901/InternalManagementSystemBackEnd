@@ -1,5 +1,7 @@
 package com.cms.service.CustMgt;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,11 @@ public class CustMgtContactServiceImpl implements CustMgtContactService{
 	public CustMgtContactBean getContactById(Integer contactId) {
 		log.debug("CustMgtContactServiceImpl.getContactById (contactId = {})", contactId);
 		return custMgtContactMapper.getContactById(contactId);
+	}
+
+	@Override
+	public List<CustMgtContactBean> getContactsByCustomerId(Integer customerId) {
+		return custMgtContactMapper.getContactsByCustomerId(customerId);
 	}
 
 	@Override
