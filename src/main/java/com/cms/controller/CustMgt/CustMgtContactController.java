@@ -46,7 +46,7 @@ public class CustMgtContactController {
 		List<CustMgtContactBean> custMgtContactBeanList = new ArrayList<>();
 		try {
 			custMgtContactBeanList = custMgtContactService.getContactsByCustomerId(customerId);
-			if (custMgtContactBeanList.get(0)  != null) {
+			if (custMgtContactBeanList != null && !custMgtContactBeanList.isEmpty() && custMgtContactBeanList.get(0)  != null) {
 				return ResponseEntity.status(HttpStatus.OK).body(custMgtContactBeanList);
 			} else {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -60,7 +60,7 @@ public class CustMgtContactController {
 	@PostMapping("/contacts")
 	public  ResponseEntity<CustMgtContactBean> createContact(@RequestBody CustMgtContactBean custMgtContactBean){
 		custMgtContactService.createContact(custMgtContactBean);		
-		Integer contactId = custMgtContactBean.getCustomer_id();
+		Integer contactId = custMgtContactBean.getContact_id();
 		log.debug("CustMgtContactController.createContact( return contact_id ={})", contactId);
 //		
 		CustMgtContactBean createBean = custMgtContactService.getContactById(contactId);

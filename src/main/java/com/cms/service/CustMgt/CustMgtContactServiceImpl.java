@@ -1,5 +1,6 @@
 package com.cms.service.CustMgt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -26,7 +27,22 @@ public class CustMgtContactServiceImpl implements CustMgtContactService{
 
 	@Override
 	public List<CustMgtContactBean> getContactsByCustomerId(Integer customerId) {
-		return custMgtContactMapper.getContactsByCustomerId(customerId);
+		log.debug("CustMgtContactServiceImpl.getContactsByCustomerId ({})", customerId);
+		List<CustMgtContactBean> contactsList = new ArrayList<>();
+
+		try {
+			contactsList = custMgtContactMapper.getContactsByCustomerId(customerId);
+			if (contactsList!= null && !contactsList.isEmpty() &&  contactsList.get(0) != null) {
+				log.debug("CustMgtContactServiceImpl.getContactsByCustomerId ({}) got contact.", customerId);
+				return contactsList;
+			} else {
+				log.debug("CustMgtContactServiceImpl.getContactsByCustomerId ({}) got nothing.", customerId);
+				return new ArrayList<>(); 
+			}
+		} catch (Exception e) {
+			log.debug("CustMgtContactServiceImpl.getContactsByCustomerId ({}) encountered an exception: {}", customerId,  e.getMessage());
+			return new ArrayList<>(); 
+		}
 	}
 
 	@Override
